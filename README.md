@@ -103,7 +103,7 @@ Playfair employs low-level black magic to ensure that your client will not get a
 5. when the Node app starts and the wrapper `.js` file is imported, it checks for the original file
 6. if it's not there, it will attempt to decrypt the encrypted file
 7. the decryption key is obtained by sending a request to a server (you choose it when you set up playfair)
-8. the file is decrypted and imported directly from memory. **The original source code DOES NOT touch the disk.** It only lives in RAM
+8. the file is decrypted and imported directly from memory. The original source code is not stored on the disk
 9. after the file is imported, everything works as it should.
 
 ## Killswitch
@@ -157,9 +157,9 @@ This ensures that there is no way to recover the original file unless you have t
 
 ### Memory Operations
 
-When decrypting the file, Playfair never stores the original file on the disk.
+After decryption, the original file **DOES NOT** touch the disk. It's only stored in memory for the purposes of being imported by Node.
 
-It goes to great lengths in order to make Node directly import it from memory.
+Playfair goes to great lengths in order to make Node directly import code from memory, because storing original code on the disk is an exploitable weakness.
 
 ### Integrity Check
 
@@ -189,6 +189,12 @@ The server also doesn't blindly trust anyone who sends requests to it. It checks
 It also doesn't send the key in plaintext. Rather, it enciphers it with a key given by the client, which is generated randomly.
 
 If someone manages to replicate the Playfair requests and gets the key from the server, they still need to go through Playfair itself in order to decrypt the file due to the key derivation that has to be done before decryption.
+
+# Limitations
+
+Playfair only works with files which use ES6 modules, and only with files which have a default export. Named exports won't work.
+
+This is a limitation of the in-memory ES6 import mechanism, which is used in order to make sure the original code is never stored on the disk.
 
 # Modifying Playfair
 
