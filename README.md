@@ -151,7 +151,9 @@ Playfair does not rely on "Security through Obscurity" when it comes to encrypti
 
 Files are encrypted via AES-256 in CBC mode along with PKCS7.
 
-For key derivation, Playfair uses Argon2id which is the **de facto** standard for password hashing. No compromises here.
+For key derivation, Playfair uses Argon2id which is the **de facto** standard for password hashing.
+
+Absolutely no compromises here.
 
 This ensures that there is no way to recover the original file unless you have the key.
 
