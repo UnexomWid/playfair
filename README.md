@@ -18,7 +18,7 @@ If someone doesn't pay, you can permanently brick the application via a remote k
 
 And bypassing Playfair isn't as simple as removing the request to the server.
 
-If you're interested in the black magic it does, [read here](https://github.com/UnexomWid/playfair?tab=readme-ov-file#how-does-it-work).
+If you're interested in the black magic it does, [read here](https://github.com/UnexomWid/playfair?tab=readme-ov-file#is-it-uncrackable).
 
 # Setup
 
@@ -158,7 +158,7 @@ There is no way to obtain the same hash from the same input, unless you have the
 
 ### Client Identification
 
-The server also doesn't blindly trust anyone who sends requests to it. It checks multiple headers in order to make sure the request **most likely** came from playfair.
+The server also doesn't blindly trust anyone who sends requests to it. It checks multiple headers in order to make sure the request **most likely** came from Playfair.
 
 It also doesn't send the key in plaintext. Rather, it enciphers it with a key given by the client, which is generated randomly.
 
