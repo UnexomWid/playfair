@@ -98,7 +98,7 @@ There is no way to create a DRM which can't be reverse-engineered. With enough e
 
 The question shouldn't be `Is it uncrackable?`, but instead `How much effort does it take to crack, and is it worth it?`.
 
-Playfair is **good enough**, meaning that your average client, even with advanced JavaScript knowledge, will have almost no chances of figuring out what's happening.
+Playfair is **good enough**, meaning that your average client, even with the most advanced JavaScript knowledge, stands almost no chances of figuring out what's happening. This is because Playfair relies heavily on machine code, and therefore also requires non-Javascript reverse-engineering skills.
 
 There are 2 scenarios under which someone can try to crack Playfair:
 
