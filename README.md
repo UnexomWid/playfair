@@ -147,6 +147,8 @@ This also makes it harder for someone who peeks into the MZPE executable to find
 
 ### Military-grade Encryption
 
+Playfair does not rely on "Security through Obscurity" when it comes to encryption.
+
 Files are encrypted via AES-256 in CBC mode along with PKCS7.
 
 For key derivation, Playfair uses Argon2id which is the **de facto** standard for password hashing. No compromises here.
@@ -166,6 +168,8 @@ code of the original unencrypted file when it is imported.
 
 Though there is a workaround, it involves creating other files and importing the Playfair module directly from there, bypassing the wrapper.
 
+The integrity check is there to deter people from easily being able to modify the wrapper.
+
 Similarly, Playfair also won't be able to load the encrypted file if it has been modified in any way, since those modifications will corrupt the data.
 
 ### Server Identification
@@ -176,11 +180,15 @@ When the server sends the key, it must also send a HMAC hash which is verified b
 
 There is no way to obtain the same hash from the same input, unless you have the same secret.
 
+This mitigates the effectiveness of man-in-the-middle attacks.
+
 ### Client Identification
 
 The server also doesn't blindly trust anyone who sends requests to it. It checks multiple headers in order to make sure the request **most likely** came from Playfair.
 
 It also doesn't send the key in plaintext. Rather, it enciphers it with a key given by the client, which is generated randomly.
+
+If someone manages to replicate the Playfair requests and gets the key from the server, they still need to go through Playfair itself in order to decrypt the file due to the key derivation that has to be done before decryption.
 
 # Modifying Playfair
 
@@ -203,7 +211,11 @@ cd cli
 cargo install --path .
 ```
 
-You won't be able to redistribute CLI binaries (they will only work on your machine), because they store the local path to the compiled Lib (which is `_dist`). When you add Playfair to a project, the Lib binary needs to be copied from there (so the CLI has to remember the dir path).
+Note that you should compile on Windows, Linux and Mac, which may require compiling on different machines.
+
+If you only run `xbuild` on Windows and it can't generate the binaries for other platforms, you won't be able to run apps protected by Playfair on those platforms.
+
+The CLI has to be compiled locally on the machine where you want to use it. This is because the CLI binary stores the local path to the compiled Lib (which is in `_dist`). When you add Playfair to a project, the Lib binary needs to be copied from there (so the CLI has to remember the dir path).
 
 # License <a href="https://github.com/UnexomWid/playfair/blob/master/LICENSE"><img align="right" src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIR OR Apache 2" /></a>
 
