@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "express": "^4.21.0"
+  },
+  "name": "playfair-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "description": ""
+}

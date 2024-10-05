@@ -1,0 +1,20 @@
+[workspace]
+resolver = "2"
+members = [
+  "core",
+  "cli",
+  "lib"
+]
+
+[workspace.dependencies]
+playfair-core = { path = "./core" }
+memmap2 = "0.9.4"
+sha2 = "0.10.8"
+hex = "0.4.3"
+obfstr = "0.4.3"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = 'abort'
+strip = true
