@@ -20,6 +20,16 @@ And bypassing Playfair isn't as simple as removing the request to the server.
 
 If you're interested in the black magic it does, [read here](https://github.com/UnexomWid/playfair?tab=readme-ov-file#is-it-uncrackable).
 
+## What if they pay after I added Playfair?
+
+Then **please** remove the Playfair protection (see below). It's very simple to do.
+
+**Nobody likes to see DRM after they paid.**
+
+While Playfair tries to incurr minimal overhead, it may still slow down the startup of the app.
+
+This is not nice for clients who pay!
+
 # Setup
 
 Install [Rust](https://www.rust-lang.org/). You already have [Node](https://nodejs.org/en) installed (if not, Playfair isn't for you).
@@ -47,7 +57,7 @@ Choose the key that you want to encrypt the file with, and also a URL. Playfair 
 Example:
 
 ```sh
-playfair pack db.js keyhere https://example.com/here
+playfair pack file.js keyhere https://example.com/here
 ```
 
 Your file was renamed to `_orig.js`. Place it in `.gitignore` so you don't accidentally push it.
@@ -63,14 +73,24 @@ All done! For you, the original file will be imported directly. Everyone else wi
 If you make any changes to the original file, simply do this:
 
 ```sh
-playfair strip db.js
+playfair strip file.js
 
-playfair pack db.js keyhere https://example.com/here
+playfair pack file.js keyhere https://example.com/here
 ```
 
-This strips the protection and then re-adds it by encrypting the modified file.
+This removes and re-adds the Playfair protection.
 
 If the client doesn't pay, simply shut down the server and let them wonder why the app suddenly exists at startup for no reason.
+
+## Remove Playfair
+
+```sh
+playfair strip file.js
+```
+
+This completely removes the protection, and restores the original file.
+
+Don't forget to commit the original file!
 
 # How does it work?
 
