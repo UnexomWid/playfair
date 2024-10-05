@@ -170,7 +170,7 @@ code of the original unencrypted file when it is imported.
 
 Though there is a workaround, it involves creating other files and importing the Playfair module directly from there, bypassing the wrapper.
 
-The integrity check is there to deter people from easily being able to modify the wrapper.
+The integrity check is only there to deter people from easily being able to modify the wrapper itself.
 
 Similarly, Playfair also won't be able to load the encrypted file if it has been modified in any way, since those modifications will corrupt the data.
 
