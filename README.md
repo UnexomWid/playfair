@@ -10,7 +10,7 @@ Are you a developer who creates Node apps for other people?
 
 Don't you just hate it when the client **refuses to pay** after you finish the project?
 
-# Yes!
+## Yes!
 
 **Playfair** is a DRM built for Node.js, designed to be used **against** people who don't play fair.
 
