@@ -155,7 +155,7 @@ For key derivation, Playfair uses Argon2id which is the **de facto** standard fo
 
 Absolutely no compromises here.
 
-This ensures that there is no way to recover the original file unless you have the key.
+This ensures that there is no way to recover the original file after the killswitch is activated, unless you have the key.
 
 ### Memory Operations
 
