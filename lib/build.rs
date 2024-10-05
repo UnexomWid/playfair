@@ -1,5 +1,5 @@
+use sha2::{Digest, Sha256};
 use std::fs::read;
-use sha2::{Sha256, Digest};
 
 extern crate napi_build;
 
@@ -11,8 +11,8 @@ fn main() {
   hash.update(data);
 
   println!(
-      "cargo:rustc-env=PLAYFAIR_JS_WRAPPER_HASH={}",
-      hex::encode_upper(&hash.finalize()[..])
+    "cargo:rustc-env=PLAYFAIR_JS_WRAPPER_HASH={}",
+    hex::encode_upper(&hash.finalize()[..])
   );
 
   napi_build::setup();

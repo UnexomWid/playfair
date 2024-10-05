@@ -2,14 +2,14 @@
 
 use base64::prelude::*;
 use memmap2::Mmap;
+use obfstr::obfstr;
+use sha2::{Digest, Sha256};
 use std::error::Error;
-use std::fs::{File, read};
-use std::str::from_utf8;
+use std::fs::{read, File};
 use std::path::Path;
 use std::result::Result;
+use std::str::from_utf8;
 use url::Url;
-use sha2::{Sha256, Digest};
-use obfstr::obfstr;
 
 use napi::{Env, JsObject};
 
@@ -84,7 +84,7 @@ fn load() -> Result<String, Box<dyn Error>> {
   if hash != obfstr!(env!("PLAYFAIR_JS_WRAPPER_HASH")) {
     return Err("Wrapper file integrity check failed".into());
   }
-  
+
   // Unpack
   let path = "./.package/package.dat";
 
@@ -99,7 +99,10 @@ fn load() -> Result<String, Box<dyn Error>> {
   let out = playfair_core::unpack(&map, None)?;
   let out = fix_imports(from_utf8(&out)?);
 
-  Ok(format!("data:text/javascript;base64,{}", String::from(BASE64_STANDARD.encode(out.as_bytes()))))
+  Ok(format!(
+    "data:text/javascript;base64,{}",
+    String::from(BASE64_STANDARD.encode(out.as_bytes()))
+  ))
 }
 
 #[module_exports]

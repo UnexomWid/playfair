@@ -1,19 +1,16 @@
 use aes::cipher::{block_padding::Pkcs7, BlockDecryptMut, BlockEncryptMut, KeyIvInit};
 use argon2::{Algorithm, Argon2, Params, Version};
+use hmac::{Hmac, Mac};
 use memmap2::MmapMut;
+use obfstr::{obfbytes, obfstr};
 use rand::rngs::StdRng;
 use rand::{RngCore, SeedableRng};
-use reqwest::{
-    blocking::Client,
-    header::USER_AGENT
-};
+use reqwest::{blocking::Client, header::USER_AGENT};
 use sha2::Sha256;
-use hmac::{Hmac, Mac};
-use obfstr::{obfstr, obfbytes};
+use std::borrow::Cow;
 use std::error::Error;
 use std::fs::File;
 use std::result::Result;
-use std::borrow::Cow;
 
 fn xor(what: &[u8], key: &[u8]) -> Vec<u8> {
     what.iter()
@@ -29,10 +26,11 @@ pub fn pack(what: &[u8], key: &str, url: &str, out_path: &str) -> Result<(), Box
         .read(true)
         .write(true)
         .create(true)
+        .truncate(true)
         .open(out_path)?;
 
     let url_xored = xor(url.as_bytes(), magic);
-    
+
     // FAIR <url_length> <url> <encrytpted_data>
     encoded.set_len((magic.len() + 1 + url_xored.len() + get_encrypted_size(what)) as u64)?;
 
@@ -74,16 +72,23 @@ pub fn unpack(what: &[u8], key: Option<&String>) -> Result<Vec<u8>, Box<dyn Erro
             let nonce_str = hex::encode_upper(nonce);
 
             let req = Client::new();
-            let res = req.get(String::from_utf8(url)?).header(USER_AGENT, obfstr!(env!("PLAYFAIR_USER_AGENT"))).header("X-Cache", &nonce_str).send()?.error_for_status()?;
+            let res = req
+                .get(String::from_utf8(url)?)
+                .header(USER_AGENT, obfstr!(env!("PLAYFAIR_USER_AGENT")))
+                .header("X-Cache", &nonce_str)
+                .send()?
+                .error_for_status()?;
 
             let key = res.text()?;
 
-            if key.len() <= 64 { // HMAC SHA256 length
+            if key.len() <= 64 {
+                // HMAC SHA256 length
                 return Err("Bad response".into());
             }
 
             // Check HMAC hash (last 64 chars)
-            let mut hash = Hmac::<Sha256>::new_from_slice(obfbytes!(env!("PLAYFAIR_HMAC_KEY").as_bytes()))?;
+            let mut hash =
+                Hmac::<Sha256>::new_from_slice(obfbytes!(env!("PLAYFAIR_HMAC_KEY").as_bytes()))?;
             hash.update(&nonce);
 
             let mut res_hash = [0; 32];
