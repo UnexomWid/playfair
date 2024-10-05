@@ -54,7 +54,7 @@ Your file was renamed to `_orig.js`. Place it in `.gitignore` so you don't accid
 
 You should also see a `.package` dir. That's where the encrypted file and the Playfair Lib are stored.
 
-Now, host the [server](/https://github.com/UnexomWid/playfair/tree/master/server) at that URL you chose.
+Now, host the [server](https://github.com/UnexomWid/playfair/tree/master/server) at that URL you chose.
 
 Note that you need to at least change the key inside `playfair.js`, to make it match the one you chose previously.
 
