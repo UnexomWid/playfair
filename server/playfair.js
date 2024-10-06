@@ -5,7 +5,7 @@ import crypto from 'node:crypto';
 // This must be the same as the key used for packing via Playfair CLI
 const PLAYFAIR_KEY = 'fair';
 
-// These must match the values from Playfair Core
+// These must match the values from Playfair Core (see core/build.rs)
 const PLAYFAIR_HMAC_KEY = 'FAIR';
 const PLAYFAIR_USER_AGENT = 'Mozilla/5.0 (Windows; Windows NT 6.2;) AppleWebKit/601.34 (KHTML, like Gecko) Chrome/52.0.2897.196 Safari/535.0 Edge/13.33431';
 
