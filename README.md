@@ -44,7 +44,7 @@ cargo install --path .
 
 ## Add Playfair protection to a project
 
-Choose a `.js` file, preferrably the most important one in the project (but not the index file).
+Choose a `.js` file, preferrably the most important one in the project.
 
 In your project dir, inside the same dir as the file you chose:
 
@@ -196,7 +196,9 @@ If someone manages to replicate the Playfair requests and gets the key from the 
 
 Playfair only works with files which use ES6 modules, and only with files which have a default export. Named exports won't work.
 
-This is a limitation of the in-memory ES6 import mechanism, which is used in order to make sure the original code is never stored on the disk.
+Also, imports from `node_modules` don't work currently. Only relative and built-in modules do. This will be fixed soon.
+
+Both of those are limitations of the in-memory ES6 import mechanism, which is used in order to make sure the original code is never stored on the disk.
 
 # Modifying Playfair
 
