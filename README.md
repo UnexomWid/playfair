@@ -168,9 +168,11 @@ Playfair goes to great lengths in order to make Node directly import code from m
 Playfair **refuses** to load if its wrapper file has been modified in any way. This ensures that someone can't just change the playfair wrapper and `console.log` the
 code of the original unencrypted file when it is imported.
 
-Though there is a workaround, it involves creating other files and importing the Playfair module directly from there, bypassing the wrapper.
-
 The integrity check is only there to deter people from easily being able to modify the wrapper itself.
+
+There is a workaround, and it involves creating other files and importing the Playfair module directly from there, bypassing the wrapper.
+
+Again, it's just **good enough**, since most clients won't put in the effort to do this.
 
 Similarly, Playfair also won't be able to load the encrypted file if it has been modified in any way, since those modifications will corrupt the data.
 
