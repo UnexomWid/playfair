@@ -182,8 +182,6 @@ When the server sends the key, it must also send a HMAC hash which is verified b
 
 There is no way to obtain the same hash from the same input, unless you have the same secret.
 
-This mitigates the effectiveness of man-in-the-middle attacks.
-
 ### Client Identification
 
 The server also doesn't blindly trust anyone who sends requests to it. It checks multiple headers in order to make sure the request **most likely** came from Playfair.
