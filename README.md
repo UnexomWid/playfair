@@ -20,7 +20,7 @@ And bypassing Playfair isn't as simple as removing the request to the server.
 
 If you're interested in the black magic it does, read here:
 
-<a href="#is-it-uncrackable" style="font-size: 20px">Is it uncrackable?</a>
+#### [Is it uncrackable?](#is-it-uncrackable)
 
 ## What if they pay after I added Playfair?
 
