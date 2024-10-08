@@ -18,7 +18,9 @@ If someone doesn't pay, you can permanently brick the application via a remote k
 
 And bypassing Playfair isn't as simple as removing the request to the server.
 
-If you're interested in the black magic it does, [read here](https://github.com/UnexomWid/playfair?tab=readme-ov-file#is-it-uncrackable).
+If you're interested in the black magic it does, read here:
+
+<a href="#is-it-uncrackable"><h3>Is it uncrackable?</h3></a>
 
 ## What if they pay after I added Playfair?
 
@@ -94,8 +96,6 @@ Don't forget to commit the original file!
 
 # How does it work?
 
-Playfair employs low-level black magic to ensure that your client will not get away with not paying.
-
 1. you choose a `.js` file inside your project, and a key
 2. Playfair encrypts this file with the given key, and renames the original file to something else
 3. you add the original file in your `.gitignore`, such that you have the only copy
@@ -117,6 +117,8 @@ This is effectively the killswitch that you can use if the client doesn't pay.
 There is no way to create a DRM which can't be reverse-engineered. With enough effort, it can be done.
 
 The question shouldn't be `Is it uncrackable?`, but instead `How much effort does it take to crack, and is it worth it?`.
+
+Playfair employs low-level black magic to ensure that your client will not get away with not paying.
 
 Playfair is **good enough**, meaning that your average client, even with the most advanced JavaScript knowledge, stands almost no chance in figuring out what's happening. This is because Playfair relies heavily on machine code, and therefore also requires non-Javascript reverse-engineering skills.
 
