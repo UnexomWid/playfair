@@ -18,9 +18,7 @@ If someone doesn't pay, you can permanently brick the application via a remote k
 
 And bypassing Playfair isn't as simple as removing the request to the server.
 
-If you're interested in the black magic it does, read here:
-
-#### [Is it uncrackable?](#is-it-uncrackable)
+If you're interested in the black magic it does, read here: [Is it uncrackable?](#is-it-uncrackable-1)
 
 ## What if they pay after I added Playfair?
 
