@@ -26,7 +26,7 @@ Then **please** remove the Playfair protection (see below). It's very simple to 
 
 **Nobody likes to see DRM after they paid.**
 
-While Playfair tries to incurr minimal overhead, it may still slow down the startup of the app.
+While Playfair tries to incur minimal overhead, it may still slow down the startup of the app.
 
 This is not nice for clients who pay!
 
