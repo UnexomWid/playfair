@@ -133,7 +133,7 @@ Let's see what Playfair does:
 
 ### Machine Code
 
-Playfair is implemented in Rust, which is compiled to **machine code**. It uses N-API in order to communicate with Node, and has a simple `.js` wrapper file which loads it.
+Playfair is implemented in Rust, which is compiled to **machine code**. It uses N-API and injects its core logic into `napi_register_module_v1`. This means that you can't import it without executing the DRM.
 
 This makes it considerably harder to reverse-engineer, especially considering that your clients are probably either normal people, or JavaScript developers at best.
 
