@@ -123,7 +123,7 @@ Playfair is **good enough**, meaning that your average client, even with the mos
 There are 2 scenarios under which someone can try to crack Playfair:
 
 1. **before** the killswitch is activated
-  - this is technically possible, but requires the client to suspect that a DRM is being used, and they must have knowledge of how Playfair works
+  - this is possible, but requires the client to suspect that a DRM is being used, and they must have knowledge of how Playfair works
 2. **after** the killswitch is activated
   - at this point, it's pretty much impossible to do anything; the file is encrypted and they don't know the key
 
@@ -133,7 +133,7 @@ Let's see what Playfair does:
 
 ### Machine Code
 
-Playfair is implemented in Rust, which is compiled to **machine code**. It uses N-API and injects its core logic into `napi_register_module_v1`. This means that you can't import it without executing the DRM.
+Playfair is implemented in Rust, which is compiled to **machine code**. It uses N-API and injects its core logic into `napi_register_module_v1`. This means that you can't import it without executing the DRM. You also can't decrypt the files without importing it.
 
 This makes it considerably harder to reverse-engineer, especially considering that your clients are probably either normal people, or JavaScript developers at best.
 
